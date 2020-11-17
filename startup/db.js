@@ -1,13 +1,10 @@
 import mongoose from 'mongoose';
 
-// VERIFY async/await
 export const connectDb = async () => {
   const uri = process.env.MONGODB_URL;
   const options = {
     socketTimeoutMS: 30000, // Close sockets after 30 seconds of inactivity
     keepAlive: true, // is true by default since mongoose 5.2.0.
-    // reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-    // reconnectInterval: 500, // Reconnect every 500ms
     poolSize: 10, // Maintain up to 10 socket connections
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -22,7 +19,3 @@ export const connectDb = async () => {
   const db = mongoose.connection;
   console.log('MongoDB Connected at host : ', db.host);
 };
-
-// https://blog.cloudboost.io/waiting-for-db-connections-before-app-listen-in-node-f568af8b9ec9
-
-// setting up replica set mongoose https://thecodebarbarian.com/stock-price-notifications-with-mongoose-and-mongodb-change-streams
