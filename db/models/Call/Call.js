@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const ParentSchema = new mongoose.Schema({
-  _id: true,
   duration: {
     type: Number,
-    required: true,
+    // required: [true, 'Please add call duration'],
+    // trim: true,
   },
 });
 
