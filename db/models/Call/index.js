@@ -21,8 +21,8 @@ const fetchData = async () => {
   try {
     const callData = await Call.find();
     return callData.map((item) => ({
-      id: item._id,
-      callDuration: item.duration,
+      ID: item._id,
+      duration: item.duration,
     }));
   } catch (ex) {
     console.log(`fetchData error: ${ex}`);

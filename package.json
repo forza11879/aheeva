@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js -e js, hbs",
+    "dev": "nodemon app.js -e js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix"
   },
@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/forza11879/aheeva#readme",
   "dependencies": {
+    "@types/express": "^4.17.9",
     "@types/mongoose": "^5.10.0",
+    "@types/ws": "^7.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.15"
+    "mongoose": "^5.10.15",
+    "ws": "^7.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
