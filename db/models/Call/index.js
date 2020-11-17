@@ -3,17 +3,12 @@ import { Call } from './Call.js';
 
 const addCall = async (call) => {
   try {
-    // const lastIndex = webApiDataReversed.length - 1;
-    // arg.data = webApiDataReversed[lastIndex];
-
     // error is catched by try/catch
     Call.create({
       duration: call,
     });
   } catch (ex) {
     console.log(`addCall error: ${ex}`.red);
-    // next(new ErrorResponse(`Error: ${ex}`, 404));
-    // next(ex);
   }
 };
 
