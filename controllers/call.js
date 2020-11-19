@@ -22,12 +22,6 @@ export const fetchData = async (req, res) => {
     }
   });
 
-  // // loop through the array more then once
-  //   let index = 0;
-  //   setInterval(function () {
-  //     console.log(arrayTwo[index++ % arrayTwo.length]);
-  //   }, 1000);
-
   let index = 0;
   const interval = setInterval(() => {
     arrayTwo[index++].map((item) => {
@@ -36,13 +30,7 @@ export const fetchData = async (req, res) => {
         clearInterval(interval);
       }
     });
-    // broadcast(req.app.locals.clients, JSON.stringify(arrayTwo[index++]));
-    // if (index == arrayTwo.length) {
-    //   clearInterval(interval);
-    // }
   }, 1000);
-
-  res.send(arrayTwo);
 };
 
 // export const addCall = () => {
