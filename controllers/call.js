@@ -35,8 +35,6 @@ export const fetchData = async (req, res) => {
         }
       });
   }, 1000);
-
-  res.send(arrayTwo);
 };
 
 // export const addCall = () => {
