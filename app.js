@@ -1,5 +1,6 @@
 import express from 'express';
 import dotnev from 'dotenv';
+import cors from 'cors';
 import { createServer } from 'http';
 import { connectDb } from './startup/db.js';
 import { getWebSocket } from './startup/webSocket.js';
@@ -8,6 +9,8 @@ import { getWebSocket } from './startup/webSocket.js';
 import mainRoute from './routes/main.js';
 
 const app = express();
+
+app.use(cors());
 
 dotnev.config({ path: './config/dev.env' });
 
