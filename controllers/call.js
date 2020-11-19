@@ -17,20 +17,26 @@ export const fetchData = async (req, res) => {
 
   arrayOne.map((value, index, array) => {
     if (index !== array.length - 1) {
-      const temp = [array[index + 1], array[index]];
+      const temp = [array[index], array[index + 1]];
       arrayTwo.push(temp);
     }
   });
 
-  let index = 0;
+  let indexOut = 0;
+
   const interval = setInterval(() => {
-    arrayTwo[index++].map((item) => {
-      broadcast(req.app.locals.clients, JSON.stringify(item));
-      if (index == arrayTwo.length) {
-        clearInterval(interval);
-      }
-    });
+    arrayTwo[indexOut++]
+      .slice()
+      .reverse()
+      .forEach((item) => {
+        broadcast(req.app.locals.clients, JSON.stringify(item));
+        if (indexOut == arrayTwo.length) {
+          clearInterval(interval);
+        }
+      });
   }, 1000);
+
+  res.send(arrayTwo);
 };
 
 // export const addCall = () => {
