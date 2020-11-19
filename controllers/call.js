@@ -4,11 +4,11 @@ import WebSocket from 'ws';
 
 const broadcast = (clients, message) => {
   console.log('message: ', message);
-  // clients.forEach((client) => {
-  //   if (client.readyState === WebSocket.OPEN) {
-  //     client.send(message);
-  //   }
-  // });
+  clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+    }
+  });
 };
 
 export const fetchData = async (req, res) => {
@@ -16,8 +16,8 @@ export const fetchData = async (req, res) => {
   const arrayTwo = [];
 
   arrayOne.map((value, index, array) => {
-    if (index + 1 !== array.length) {
-      const temp = [array[index], array[index + 1]];
+    if (index !== array.length - 1) {
+      const temp = [array[index + 1], array[index]];
       arrayTwo.push(temp);
     }
   });
@@ -30,13 +30,17 @@ export const fetchData = async (req, res) => {
 
   let index = 0;
   const interval = setInterval(() => {
-    // console.log(arrayTwo[index++]);
-    broadcast(req.app.locals.clients, JSON.stringify(arrayTwo[index++]));
-    if (index == arrayTwo.length) {
-      clearInterval(interval);
-    }
+    arrayTwo[index++].map((item) => {
+      broadcast(req.app.locals.clients, JSON.stringify(item));
+      if (index == arrayTwo.length) {
+        clearInterval(interval);
+      }
+    });
+    // broadcast(req.app.locals.clients, JSON.stringify(arrayTwo[index++]));
+    // if (index == arrayTwo.length) {
+    //   clearInterval(interval);
+    // }
   }, 1000);
-  // console.log('req.app.locals.clients', req.app.locals.clients);
 
   res.send(arrayTwo);
 };

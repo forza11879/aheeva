@@ -16,7 +16,7 @@ const fetchData = async () => {
   try {
     const callData = await Call.find();
     return callData.map((item) => ({
-      ID: item._id,
+      id: item._id,
       duration: item.duration,
     }));
   } catch (ex) {
